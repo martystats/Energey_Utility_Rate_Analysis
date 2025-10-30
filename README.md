@@ -1,92 +1,108 @@
-# ⚡ Energy Utility Rates Analysis — EDA + Regression Modeling
+# ⚡ Energy Utility Rate Analysis — EDA + Regression Modeling  
 
-## 📘 Project Overview  
-This project investigates **U.S. Electric Utility Rates** by analyzing commercial (`comm_rate`), industrial (`ind_rate`), and residential (`res_rate`) electricity pricing data across different states, ownership types, and service structures.  
-The goal is to perform a **complete data-science workflow** — from **cleaning and exploratory data analysis (EDA)** to **predictive modeling** using multiple regression algorithms.
-
-The study identifies rate disparities across utilities, highlights factors influencing residential rates, and applies regression models to predict `res_rate` based on other variables.
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Pandas](https://img.shields.io/badge/Pandas-Data--Analysis-green)
+![Matplotlib](https://img.shields.io/badge/Visualization-Matplotlib-yellow)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine--Learning-orange)
+![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-red)
+![GitHub](https://img.shields.io/badge/Version-Control-GitHub-lightgrey)
 
 ---
 
-## 🧭 Key Steps  
+## 📘 Project Overview  
+This project explores **energy utility rate data** to analyze and predict residential electricity prices across U.S. states.  
+It demonstrates a complete end-to-end **data science workflow**, covering **data cleaning**, **exploratory data analysis (EDA)**, **feature encoding**, **model training**, and **evaluation** using regression algorithms.
 
-### 🧹 1. Data Cleaning  
-- Reinforced column data types (`zip`, `eiaid` → string).  
-- Verified no missing or duplicate records.  
-- Standardized string formats for categorical columns.  
+The analysis compares rates for **commercial**, **industrial**, and **residential** customers and identifies key patterns that influence pricing across utilities, ownership types, and service types.
 
-### 📊 2. Exploratory Data Analysis (EDA)  
-- Generated numerical and categorical summary statistics.  
-- Visualized rate distributions (histograms, boxplots).  
-- Compared rates by **Ownership Type** and **Service Type**.  
-- Computed correlation matrix among rate variables.  
-- Identified top and bottom five states by average residential rate.
+---
 
-### 🧠 3. Modeling  
-- Defined `res_rate` as target and trained multiple regressors:  
+## 🔍 Key Steps  
+
+### 1. Data Cleaning  
+- Removed missing or zero rate values.  
+- Standardized column formats and ensured correct data types.  
+- Reinforced categorical identifiers (`zip`, `eiaid`, `state`, `utility_name`, etc.) as string types.  
+- Verified numerical consistency for rate columns.
+
+### 2. Exploratory Data Analysis (EDA)  
+- Generated descriptive statistics for all rate types.  
+- Visualized **distributions** (histograms & boxplots) for commercial, industrial, and residential rates.  
+- Compared **average rates by ownership and service type**.  
+- Computed a **correlation heatmap** among numerical variables (`comm_rate`, `ind_rate`, `res_rate`).
+
+### 3. Insights & Interpretation  
+- Identified the **top 5 and bottom 5 states** by average residential electricity rate.  
+- Found that **Hawaii (HI)** and **Alaska (AK)** consistently report the highest rates.  
+- Discovered **strong correlations** (0.88–0.93) among rate categories.  
+- Visualized group trends using comparative bar charts.
+
+### 4. Predictive Modeling (Advanced)  
+- Trained and compared four regression models:  
   - **Linear Regression**  
   - **Decision Tree Regressor**  
   - **Random Forest Regressor**  
   - **Gradient Boosting Regressor**  
-- Evaluated models using **R²** and **Mean Squared Error (MSE)** metrics.  
-- Visualized **Actual vs Predicted Residential Rates** for the best model.  
+- Evaluated model accuracy using **Mean Squared Error (MSE)** and **R² Score**.  
+- Random Forest and Decision Tree achieved the best performance (R² ≈ 1.00).
 
-### 🔍 4. Feature Importance  
-- Assessed predictor significance using **Random Forest** and **Gradient Boosting** importance scores.  
-- Found `comm_rate` to be the strongest determinant of `res_rate`.  
+### 5. Feature Importance  
+- Determined that `comm_rate` and `ind_rate` were the strongest predictors of `res_rate`.  
+- Visualized feature importances using side-by-side bar charts for both **Random Forest** and **Gradient Boosting** models.
 
-### 💾 5. Packaging  
-All deliverables have been saved and uploaded for reproducibility and external access.
-
----
-
-## 🧩 Results Summary  
-
-| Model | MSE | R² Score |
-|:--|--:|--:|
-| Decision Tree | 0.00 | 1.00 |
-| Random Forest | 0.00 | 1.00 |
-| Gradient Boosting | 0.00 | 0.98 |
-| Linear Regression | 0.00 | 0.88 |
-
-**Key Insight:**  
-- Extremely low MSE and near-perfect R² (~0.9997) indicate **exceptional predictive performance**.  
-- Residential rate trends are primarily influenced by commercial and industrial rates, with minimal contribution from ownership and service type.
+### 6. Model Export & Deployment Preparation  
+- Saved final model as: **`best_regression_model.pkl`**  
+- Exported predictions as: **`model_predictions.csv`**  
+- Packaged all deliverables (CSV, PKL, Notebook, README) into one GitHub-ready folder for deployment and documentation.
 
 ---
 
-## 📁 Deliverables  
+## 📊 Results Summary  
+
+| Metric | Best Model | MSE | R² Score |
+|:-------|:------------|:----|:---------|
+| Random Forest | 0.0000 | **1.00** |
+| Decision Tree | 0.0000 | **1.00** |
+| Gradient Boosting | 0.0001 | **0.98** |
+| Linear Regression | 0.0006 | **0.88** |
+
+✅ The **very low MSE** and **high R²** confirm exceptional model accuracy.  
+✅ Predicted residential rates closely match actual outcomes.  
+✅ Strong correlation indicates high interdependence between commercial, industrial, and residential pricing trends.
+
+---
+
+## 🧾 Deliverables  
 
 | File | Description |
-|:--|:--|
-| `iou_zipcodes_2023.csv` | Cleaned dataset used for analysis |
-| `mynewnotebook19.ipynb` | Jupyter notebook containing full workflow |
-| `best_regression_model.pkl` | Saved best-performing regression model |
-| `model_predictions.csv` | Predicted values for residential electricity rates |
-| `README.md` | Project documentation and GitHub summary |
+|:------|:-------------|
+| `iou_zipcodes_2023.csv` | Cleaned dataset used for modeling |
+| `model_predictions.csv` | Saved predictions for verification |
+| `best_regression_model.pkl` | Trained regression model |
+| `mynewnotebook19.ipynb` | Full analysis notebook |
+| `README.md` | Project documentation |
 
 ---
 
-## 🧰 Tools & Libraries  
-- Python 3.10  
-- Pandas, NumPy  
-- Matplotlib, Seaborn  
-- Scikit-Learn  
-- Joblib  
-- Jupyter Notebook  
+## 🧠 Tools & Technologies  
+- **Python 3.10**  
+- **Pandas, NumPy** — Data cleaning & manipulation  
+- **Matplotlib, Seaborn** — Visualization  
+- **Scikit-learn** — Machine Learning & Model Evaluation  
+- **Jupyter Notebook** — Interactive analysis  
+- **Git & GitHub** — Version control and portfolio management  
 
 ---
 
-## 🚀 Author  
+## 👤 Author  
 **Martin Ude**  
-Data Science Portfolio — [@martystats](https://github.com/martystats)  
-📅 *Completed: October 2025*  
+GitHub: [martystats](https://github.com/martystats)  
+📅 *Project Completed: October 2025*
 
 ---
 
-### 🏁 Summary
-This project successfully demonstrates a full **end-to-end machine-learning pipeline** on real-world utility rate data — from data cleaning and visualization to model training, evaluation, and deployment-ready packaging.  
-It is a strong example of **predictive analytics applied to energy economics** and is fully reproducible for review or extension.
+## 🏁 Summary  
+This project demonstrates a strong ability to handle **real-world energy pricing data**, from cleaning and exploratory analysis to **machine learning modeling** and **deployment packaging**.  
+It highlights analytical depth, technical rigor, and professional documentation ready for inclusion in a data science portfolio.
 
 ---
-
